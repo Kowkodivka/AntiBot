@@ -1,0 +1,11 @@
+{
+  "name": "antibot-plugin",
+  "minGameVersion": "146",
+  "displayName": "AntiBot",
+  "author": "kwokodivka",
+  "description": "...",
+  "version": "1.0",
+  "main": "ru.kowkodivka.mindustry.antibot.AntiBot",
+  "repo": "Kowkodivka/AntiBot",
+  "dependencies": []
+}

@@ -2,18 +2,27 @@ plugins {
     id("java")
 }
 
-group = "ru.kowkodivka.mindustry"
-version = "1.0-SNAPSHOT"
+group = "ru.kowkodivka.mindustry.antibot"
+version = "1.0.0"
+
+val mindustryVersion = "v146"
 
 repositories {
     mavenCentral()
+    maven("https://jitpack.io")
+    maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
+    compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks.jar {
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }
